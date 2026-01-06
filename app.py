@@ -126,7 +126,8 @@ from pathlib import Path
 st.set_page_config(page_title="News Importance App", layout="wide")
 st.title("News Importance App")
 
-CSV_PATH = Path("data/gdelt_news_count.csv")  # ← CSV名が違うならここだけ変える
+CSV_PATH = Path("相関係数を出す数値のグラフ.csv")
+
 
 if CSV_PATH.exists():
     df = pd.read_csv(CSV_PATH)
@@ -135,4 +136,5 @@ if CSV_PATH.exists():
 else:
     st.error(f"CSVが見つからない: {CSV_PATH}")
     st.write("GitHubのリポジトリに data フォルダとCSVがあるか確認してね。")
+
 

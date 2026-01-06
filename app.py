@@ -123,13 +123,7 @@ st.dataframe(
 CSV_PATH = Path("相関係数を出す数値のグラフ.csv")
 
 
-if CSV_PATH.exists():
-    df = pd.read_csv(CSV_PATH)
-    st.success(f"CSV読み込みOK: {CSV_PATH}")
-    st.dataframe(df, use_container_width=True)
-else:
-    st.error(f"CSVが見つからない: {CSV_PATH}")
-    st.write("GitHubのリポジトリに data フォルダとCSVがあるか確認してね。")
+
 
 
 

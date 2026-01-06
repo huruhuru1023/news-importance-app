@@ -119,12 +119,6 @@ st.dataframe(
     use_container_width=True
 )
 
-import streamlit as st
-import pandas as pd
-from pathlib import Path
-
-st.set_page_config(page_title="News Importance App", layout="wide")
-st.title("News Importance App")
 
 CSV_PATH = Path("相関係数を出す数値のグラフ.csv")
 
@@ -136,5 +130,6 @@ if CSV_PATH.exists():
 else:
     st.error(f"CSVが見つからない: {CSV_PATH}")
     st.write("GitHubのリポジトリに data フォルダとCSVがあるか確認してね。")
+
 
 

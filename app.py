@@ -120,3 +120,20 @@ st.dataframe(
     df[["Date","USDJPY","Sentiment","NewsCount","FX_Change","Importance","Alert"]],
     use_container_width=True
 )
+
+import streamlit as st
+import pandas as pd
+from pathlib import Path
+
+st.set_page_config(page_title="News Importance App", layout="wide")
+st.title("News Importance App")
+
+CSV_PATH = Path("data/gdelt_news_count.csv")  # ← CSV名が違うならここだけ変える
+
+if CSV_PATH.exists():
+    df = pd.read_csv(CSV_PATH)
+    st.success(f"CSV読み込みOK: {CSV_PATH}")
+    st.dataframe(df, use_container_width=True)
+else:
+    st.error(f"CSVが見つからない: {CSV_PATH}")
+    st.write("GitHubのリポジトリに data フォルダとCSVがあるか確認してね。")

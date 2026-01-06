@@ -5,21 +5,19 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="ニュース重要度スコア可視化", layout="wide")
 
 st.title("ニュース重要度スコア可視化アプリ")
-st.caption("まずCSVをアップロードしてください（Date, USDJPY, Sentiment）")
+st.caption("GitHubに置いたCSVを自動で読み込みます")
 
-uploaded = st.file_uploader("CSVをアップロード", type=["csv"])
 
-# ← ここが“真っ白”防止。必ず画面に案内が出る
-if uploaded is None:
-    st.warning("左のボタンからCSVを選んでください。")
+from pathlib import Path
+
+CSV_PATH = Path("相関係数を出す数値のグラフ.csv")
+
+if not CSV_PATH.exists():
+    st.error("CSVファイルが見つかりません")
     st.stop()
 
-try:
-    df = pd.read_csv(uploaded)
-except Exception as e:
-    st.error("CSVの読み込みに失敗しました。CSV形式を確認してください。")
-    st.exception(e)
-    st.stop()
+df = pd.read_csv(CSV_PATH)
+
 
 # 列名ゆらぎ吸収
 rename = {}
@@ -137,3 +135,4 @@ if CSV_PATH.exists():
 else:
     st.error(f"CSVが見つからない: {CSV_PATH}")
     st.write("GitHubのリポジトリに data フォルダとCSVがあるか確認してね。")
+
